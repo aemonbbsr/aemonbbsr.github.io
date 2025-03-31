@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>AEMON: Rock History Unleashed</title>
     <style>
         /* Base styles */
@@ -90,12 +90,13 @@
         }
         
         h1 {
-            font-size: 4.5rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 3px;
             text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+            line-height: 1.2;
         }
         
         .tagline {
@@ -137,10 +138,11 @@
         }
         
         .section-heading h2 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             text-transform: uppercase;
             margin-bottom: 1rem;
             letter-spacing: 2px;
+            line-height: 1.2;
         }
         
         .section-heading p {
@@ -148,6 +150,7 @@
             max-width: 800px;
             margin: 0 auto;
             color: #cccccc;
+            text-align: center;
         }
         
         .about-container {
@@ -176,22 +179,25 @@
         }
         
         .about-text h3 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
             color: var(--accent-color);
+            line-height: 1.2;
         }
         
         .about-text p {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
+            text-align: justify;
         }
         
         .gallery-container {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
+            padding: 0 10px;
         }
         
         .gallery-item {
@@ -236,6 +242,11 @@
         .gallery-overlay h3 {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
+        }
+        
+        .gallery-overlay p {
+            font-size: 0.9rem;
+            text-align: center;
         }
         
         .collaborators {
@@ -292,6 +303,7 @@
             font-size: 1rem;
             color: #cccccc;
             margin-bottom: 1rem;
+            text-align: center;
         }
         
         .social-icons {
@@ -319,6 +331,69 @@
         .social-icon i {
             color: var(--light-text);
             font-size: 1.2rem;
+        }
+        
+        .instagram-section {
+            padding: 5rem 2rem;
+            background-color: #1a1a1a;
+        }
+        
+        .instagram-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .instagram-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            border-radius: 4px;
+        }
+        
+        .instagram-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .instagram-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .instagram-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .instagram-item:hover .instagram-overlay {
+            opacity: 1;
+        }
+        
+        .instagram-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .instagram-follow {
+            text-align: center;
+            margin-top: 1rem;
         }
         
         .form-status {
@@ -390,6 +465,7 @@
         .contact-card p {
             color: #bbb;
             margin-bottom: 0.5rem;
+            text-align: center;
         }
         
         .contact-form-container {
@@ -459,106 +535,6 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         
-        @media (max-width: 992px) {
-            .contact-container {
-                flex-direction: column;
-            }
-            
-            .contact-info {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            
-            .contact-card {
-                flex: 1 1 calc(50% - 1rem);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .contact-info {
-                flex-direction: column;
-            }
-            
-            .contact-card {
-                flex: 1 1 100%;
-            }
-        }
-
-        .instagram-section {
-            padding: 5rem 2rem;
-            background-color: #1a1a1a;
-        }
-        
-        .instagram-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .instagram-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .instagram-item {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
-            border-radius: 4px;
-        }
-        
-        .instagram-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .instagram-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .instagram-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .instagram-item:hover .instagram-overlay {
-            opacity: 1;
-        }
-        
-        .instagram-overlay i {
-            color: white;
-            font-size: 2rem;
-        }
-        
-        .instagram-follow {
-            text-align: center;
-            margin-top: 1rem;
-        }
-        
-        @media (max-width: 768px) {
-            .instagram-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .instagram-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
         .join-section {
             text-align: center;
             background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/join-background.jpeg');
@@ -577,15 +553,20 @@
         }
         
         .join-text h2 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            line-height: 1.2;
         }
         
         .join-text p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
+            text-align: justify;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .contact-form {
@@ -717,6 +698,74 @@
             color: #777777;
         }
         
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 200;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: var(--light-text);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 100%;
+                background-color: rgba(18, 18, 18, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 100;
+                margin-top: 0;
+            }
+            
+            nav ul.active {
+                transform: translateX(0);
+            }
+            
+            nav ul li a {
+                font-size: 1.5rem;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: translateY(11px) rotate(45deg);
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: translateY(-11px) rotate(-45deg);
+            }
+            
+            .nav-container {
+                justify-content: space-between;
+            }
+        }
+        
         /* Responsive design */
         @media (max-width: 1024px) {
             .about-container {
@@ -726,6 +775,10 @@
             
             h1 {
                 font-size: 3.5rem;
+            }
+            
+            .section-heading h2 {
+                font-size: 2.5rem;
             }
         }
         
@@ -744,7 +797,7 @@
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .tagline {
@@ -759,9 +812,25 @@
             .contact-form button {
                 grid-column: span 1;
             }
+            
+            .section-heading h2 {
+                font-size: 2.2rem;
+            }
+            
+            .join-text h2 {
+                font-size: 2.5rem;
+            }
         }
         
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
             .nav-container {
                 padding: 1rem;
             }
@@ -777,11 +846,63 @@
             }
             
             .section-heading h2 {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
             }
             
             .join-text h2 {
-                font-size: 2.2rem;
+                font-size: 2rem;
+            }
+            
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .about-text h3 {
+                font-size: 1.8rem;
+            }
+            
+            .about-text p {
+                font-size: 1rem;
+            }
+            
+            .instagram-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .collaborator-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+                padding: 0 10px;
+            }
+            
+            .section-heading p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+            
+            .instagram-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+            
+            .contact-container,
+            .join-container,
+            .instagram-container {
+                padding: 0 10px;
             }
         }
     </style>
@@ -791,8 +912,13 @@
     <header>
         <div class="nav-container">
             <div class="logo">AEMON</div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav>
-                <ul>
+                <ul id="mainNav">
                     <li><a href="#about">About</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#collaborators">Collaborators</a></li>
@@ -937,12 +1063,12 @@
     <section id="instagram" class="instagram-section">
         <div class="section-heading">
             <h2>Rock Feed</h2>
-            <p>Follow our latest adventures on Instagram @aegonsfx</p>
+            <p>Follow our latest adventures on Instagram @AemonRockHistory</p>
         </div>
         <div class="instagram-container">
             <div class="instagram-grid">
                 <div class="instagram-item">
-                    <a href="https://instagram.com/aegonsfx" target="_blank">
+                    <a href="https://instagram.com/yourusername" target="_blank">
                         <img src="images/insta1.jpeg" alt="Instagram post 1">
                         <div class="instagram-overlay">
                             <i class="fab fa-instagram"></i>
@@ -950,7 +1076,7 @@
                     </a>
                 </div>
                 <div class="instagram-item">
-                    <a href="https://instagram.com/aegonsfx" target="_blank">
+                    <a href="https://instagram.com/yourusername" target="_blank">
                         <img src="images/insta2.jpeg" alt="Instagram post 2">
                         <div class="instagram-overlay">
                             <i class="fab fa-instagram"></i>
@@ -958,7 +1084,7 @@
                     </a>
                 </div>
                 <div class="instagram-item">
-                    <a href="https://instagram.com/aegonsfx" target="_blank">
+                    <a href="https://instagram.com/yourusername" target="_blank">
                         <img src="images/insta3.jpeg" alt="Instagram post 3">
                         <div class="instagram-overlay">
                             <i class="fab fa-instagram"></i>
@@ -966,7 +1092,7 @@
                     </a>
                 </div>
                 <div class="instagram-item">
-                    <a href="https://instagram.com/aegonsfx" target="_blank">
+                    <a href="https://instagram.com/yourusername" target="_blank">
                         <img src="images/insta4.jpeg" alt="Instagram post 4">
                         <div class="instagram-overlay">
                             <i class="fab fa-instagram"></i>
@@ -974,7 +1100,7 @@
                     </a>
                 </div>
                 <div class="instagram-item">
-                    <a href="https://instagram.com/aegonsfx" target="_blank">
+                    <a href="https://instagram.com/yourusername" target="_blank">
                         <img src="images/insta5.jpeg" alt="Instagram post 5">
                         <div class="instagram-overlay">
                             <i class="fab fa-instagram"></i>
@@ -982,7 +1108,7 @@
                     </a>
                 </div>
                 <div class="instagram-item">
-                    <a href="https://instagram.com/aegonsfx" target="_blank">
+                    <a href="https://instagram.com/yourusername" target="_blank">
                         <img src="images/insta6.jpeg" alt="Instagram post 6">
                         <div class="instagram-overlay">
                             <i class="fab fa-instagram"></i>
@@ -991,7 +1117,7 @@
                 </div>
             </div>
             <div class="instagram-follow">
-                <a href="https://instagram.com/aegonsfx" target="_blank" class="cta-button">Follow @aegonsfx</a>
+                <a href="https://instagram.com/yourusername" target="_blank" class="cta-button">Follow @AemonRockHistory</a>
             </div>
         </div>
     </section>
@@ -1110,6 +1236,25 @@
                 });
             });
         });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (mobileMenuToggle && mainNav) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a link
+            document.querySelectorAll('#mainNav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                });
+            });
+        }
 
         // Contact form functionality
         document.addEventListener('DOMContentLoaded', function() {
