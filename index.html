@@ -1314,17 +1314,15 @@
                     };
                     
                     // Send the data using EmailJS
-                    emailjs.send('service_id', 'template_id', formData, 'user_id')
+                    emailjs.send('service_3vim6nt', 'template_fx6up8h', formData)
                         .then(function(response) {
-                            console.log('SUCCESS!', response.status, response.text);
-                            showFormStatus('Your message has been sent successfully! We\'ll get back to you soon.', 'success');
-                            contactForm.reset();
-                        }, function(error) {
-                            console.log('FAILED...', error);
-                            // Fallback to mailto as a backup method
-                            sendMailtoEmail(formData);
-                        });
-                });
+            alert('Email sent successfully!');
+            document.getElementById('contactForm').reset();
+        }, function(error) {
+            console.error('Failed to send email:', error);
+            alert('Failed to send email. Please try again later.');
+        });
+});
             }
             
             function showFormStatus(message, type) {
@@ -1361,7 +1359,7 @@
     <script type="text/javascript">
         (function() {
             // Public Key - replace with your actual EmailJS public key
-            emailjs.init("your_emailjs_public_key");
+            emailjs.init("x2YlPTZg2S8uOFZe2");
         })();
     </script>
 </body>
