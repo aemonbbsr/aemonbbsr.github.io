@@ -935,6 +935,529 @@
                 padding: 0 10px;
             }
         }
+        /* Encyclopedia/Timeline Section Styles */
+.encyclopedia-section {
+    background-color: #1a1a1a;
+    padding: 5rem 2rem;
+}
+
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.era-button {
+    background-color: var(--secondary-accent);
+    color: var(--light-text);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.era-button:hover, .era-button.active {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--secondary-accent);
+    top: 0;
+    bottom: 0;
+    left: 50px;
+    margin-left: -2px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 50px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+}
+
+.timeline-date {
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: var(--light-text);
+    background-color: var(--accent-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    transform: translateY(-50%);
+    top: 10px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: #2a2a2a;
+    position: relative;
+    border-radius: 10px;
+    margin-left: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--light-text);
+}
+
+.timeline-content p {
+    text-align: justify;
+    margin-bottom: 1rem;
+}
+
+.timeline-image {
+    margin-top: 1rem;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.timeline-image img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.encyclopedia-teaser {
+    max-width: 800px;
+    margin: 4rem auto 0;
+    text-align: center;
+    background-color: #2a2a2a;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.encyclopedia-teaser h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.encyclopedia-teaser p {
+    margin-bottom: 1.5rem;
+}
+
+/* Blog/Articles Section Styles */
+.blog-section {
+    padding: 5rem 2rem;
+    background-color: #0e0e0e;
+}
+
+.blog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.featured-article {
+    display: flex;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.featured-image {
+    flex: 1;
+    min-height: 350px;
+    overflow: hidden;
+}
+
+.featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-content {
+    flex: 1;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-category {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--light-text);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+}
+
+.featured-content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.featured-content p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    flex-grow: 1;
+}
+
+.article-meta {
+    display: flex;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.publish-date {
+    margin-right: 1.5rem;
+}
+
+.read-more {
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover {
+    color: #ff3232;
+    transform: translateX(5px);
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.article-card {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-card:hover {
+    transform: translateY(-10px);
+}
+
+.article-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.article-card:hover .article-image img {
+    transform: scale(1.1);
+}
+
+.article-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.article-content h4 {
+    font-size: 1.2rem;
+    margin: 0.8rem 0;
+    line-height: 1.4;
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    flex-grow: 1;
+}
+
+.blog-cta {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blog-cta h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.blog-cta p {
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Rock Vocabulary Section Styles */
+.vocabulary-section {
+    padding: 5rem 2rem;
+    background-color: #161616;
+}
+
+.vocabulary-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.vocabulary-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.vocabulary-intro h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.vocabulary-intro p {
+    text-align: justify;
+}
+
+.vocabulary-search {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.vocab-search-input {
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+}
+
+.vocab-search-input:focus {
+    outline: 2px solid var(--accent-color);
+}
+
+.category-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.vocab-filter {
+    background-color: var(--secondary-accent);
+    color: var(--light-text);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.vocab-filter:hover, .vocab-filter.active {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.vocabulary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.vocab-card {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.vocab-card:hover {
+    transform: translateY(-5px);
+}
+
+.vocab-card h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--light-text);
+}
+
+.vocab-card p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.vocab-category {
+    display: inline-block;
+    background-color: var(--secondary-accent);
+    color: var(--light-text);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.vocab-example {
+    font-style: italic;
+    color: #bbb;
+    font-size: 0.95rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.vocabulary-cta {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.vocabulary-cta h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.vocabulary-cta p {
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* JavaScript for Timeline Filtering */
+@media (max-width: 992px) {
+    .featured-article {
+        flex-direction: column;
+    }
+    
+    .featured-image {
+        min-height: 250px;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-dot {
+        left: 30px;
+    }
+    
+    .timeline-content {
+        margin-left: 40px;
+    }
+    
+    .timeline-date {
+        font-size: 0.9rem;
+        padding: 3px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .era-button {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .vocabulary-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .vocabulary-search {
+        flex-direction: column;
+    }
+    
+    .category-filters {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .vocab-filter {
+        width: 100%;
+    }
+    
+    .timeline-item {
+        padding: 10px 20px;
+    }
+    
+    .timeline-content {
+        padding: 15px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.2rem;
+    }
+}
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -1224,7 +1747,385 @@
             </form>
         </div>
     </section>
-
+<!-- Rock Encyclopedia/Timeline Section -->
+<section id="encyclopedia" class="encyclopedia-section">
+    <div class="section-heading">
+        <h2>Rock Timeline</h2>
+        <p>Journey through the defining moments and evolution of rock's golden era</p>
+    </div>
+    
+    <div class="timeline-container">
+        <div class="timeline-controls">
+            <button class="era-button active" data-era="all">All Eras</button>
+            <button class="era-button" data-era="60s">60s Roots</button>
+            <button class="era-button" data-era="70s">70s Revolution</button>
+            <button class="era-button" data-era="80s">80s Explosion</button>
+            <button class="era-button" data-era="90s">90s Evolution</button>
+        </div>
+        
+        <div class="timeline">
+            <!-- 60s -->
+            <div class="timeline-item" data-era="60s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1967</div>
+                <div class="timeline-content">
+                    <h3>Psychedelic Rock Emerges</h3>
+                    <p>The Beatles release "Sgt. Pepper's Lonely Hearts Club Band," revolutionizing studio production and album-oriented rock, while Jimi Hendrix debuts "Are You Experienced," redefining what was possible on the electric guitar.</p>
+                    <div class="timeline-image">
+                        <img src="images/timeline-60s.jpeg" alt="Psychedelic Rock Era">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="60s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1969</div>
+                <div class="timeline-content">
+                    <h3>Woodstock Defines a Generation</h3>
+                    <p>The Woodstock Music & Art Fair becomes the defining cultural moment for a generation, featuring iconic performances from Jimi Hendrix, The Who, and Jefferson Airplane, establishing the template for the rock festival experience.</p>
+                </div>
+            </div>
+            
+            <!-- 70s -->
+            <div class="timeline-item" data-era="70s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1970</div>
+                <div class="timeline-content">
+                    <h3>Hard Rock Takes Center Stage</h3>
+                    <p>Black Sabbath releases their self-titled debut album, widely considered the first true heavy metal album, while Led Zeppelin's "Led Zeppelin III" showcases the band's expanding musical palette.</p>
+                    <div class="timeline-image">
+                        <img src="images/timeline-70s.jpeg" alt="Hard Rock Era">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="70s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1973</div>
+                <div class="timeline-content">
+                    <h3>The Birth of Arena Rock</h3>
+                    <p>Pink Floyd releases "The Dark Side of the Moon," pioneering prog-rock's expansive sound, while bands like Led Zeppelin and The Who perfect the stadium rock experience with elaborate stage shows and sound systems.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="70s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1977</div>
+                <div class="timeline-content">
+                    <h3>Punk Challenges the Establishment</h3>
+                    <p>The Sex Pistols release "Never Mind the Bollocks," while The Clash debuts their self-titled album, offering raw, politically charged alternatives to the perceived excesses of progressive rock and disco.</p>
+                </div>
+            </div>
+            
+            <!-- 80s -->
+            <div class="timeline-item" data-era="80s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1981</div>
+                <div class="timeline-content">
+                    <h3>MTV Revolutionizes Music Promotion</h3>
+                    <p>MTV launches with "Video Killed the Radio Star," forever changing how rock music was marketed and consumed, creating a new emphasis on visual presentation and leading to the rise of glam metal.</p>
+                    <div class="timeline-image">
+                        <img src="images/timeline-80s.jpeg" alt="MTV Era">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="80s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1984</div>
+                <div class="timeline-content">
+                    <h3>Hair Metal Dominates</h3>
+                    <p>Bands like Mötley Crüe, Poison, and Whitesnake define the era with their combination of power ballads, guitar virtuosity, and glam aesthetics, bringing rock to unprecedented commercial heights.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="80s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1987</div>
+                <div class="timeline-content">
+                    <h3>Appetite for Destruction Changes Everything</h3>
+                    <p>Guns N' Roses releases their debut album, bringing a raw, dangerous edge back to hard rock and setting the stage for the grittier sounds that would define the early 90s.</p>
+                </div>
+            </div>
+            
+            <!-- 90s -->
+            <div class="timeline-item" data-era="90s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1991</div>
+                <div class="timeline-content">
+                    <h3>Grunge Emerges from Seattle</h3>
+                    <p>Nirvana's "Nevermind" and Pearl Jam's "Ten" bring the Seattle sound to the mainstream, challenging the dominance of hair metal and reconnecting rock with its raw, emotional core.</p>
+                    <div class="timeline-image">
+                        <img src="images/timeline-90s.jpeg" alt="Grunge Era">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="90s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1994</div>
+                <div class="timeline-content">
+                    <h3>The End of an Era</h3>
+                    <p>Kurt Cobain's death marks a symbolic turning point for rock, as alternative bands like Green Day, The Offspring, and Weezer bring punk-influenced rock back to the charts with a more polished sound.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="90s">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">1999</div>
+                <div class="timeline-content">
+                    <h3>Rock Splinters Into Subgenres</h3>
+                    <p>As the decade closes, rock fragments into nu-metal, post-grunge, and pop-punk, while older rock acts like Aerosmith and Rolling Stones continue strong touring careers, bridging generations of rock fans.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="encyclopedia-teaser">
+        <h3>Band Profiles Coming Soon</h3>
+        <p>Deep dives into Led Zeppelin, Aerosmith, AC/DC, and more legendary acts that defined rock's golden era.</p>
+        <a href="#contact" class="cta-button">Request a Band Profile</a>
+    </div>
+</section>
+    <!-- Blog/Articles Section -->
+<section id="blog" class="blog-section">
+    <div class="section-heading">
+        <h2>Amplified Insights</h2>
+        <p>Deep dives into the music, culture, and aesthetics that defined rock's golden era</p>
+    </div>
+    
+    <div class="blog-container">
+        <div class="featured-article">
+            <div class="featured-image">
+                <img src="images/featured-article.jpeg" alt="The Art of the Power Chord">
+            </div>
+            <div class="featured-content">
+                <span class="article-category">Music Theory</span>
+                <h3>The Art of the Power Chord: Rock's Universal Language</h3>
+                <p>How a simple two-note formation revolutionized music and became the cornerstone of rock expression from the 60s through the 90s and beyond.</p>
+                <div class="article-meta">
+                    <span class="publish-date">Coming Soon</span>
+                    <span class="read-time">7 min read</span>
+                </div>
+                <a href="#" class="read-more">Read Coming Soon</a>
+            </div>
+        </div>
+        
+        <div class="article-grid">
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="images/article-1.jpeg" alt="Stage Presence">
+                </div>
+                <div class="article-content">
+                    <span class="article-category">Performance</span>
+                    <h4>Stadium-Sized Presence: How Rock Icons Commanded the Stage</h4>
+                    <p>Breaking down the moves, techniques, and psychological approaches that transformed musicians into legends.</p>
+                    <div class="article-meta">
+                        <span class="publish-date">Coming Soon</span>
+                        <span class="read-time">5 min read</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="images/article-2.jpeg" alt="Album Art">
+                </div>
+                <div class="article-content">
+                    <span class="article-category">Visual Arts</span>
+                    <h4>Beyond the Music: How Album Art Defined Rock's Visual Language</h4>
+                    <p>From Hipgnosis to Roger Dean, exploring the artists who created rock's most iconic visual identities.</p>
+                    <div class="article-meta">
+                        <span class="publish-date">Coming Soon</span>
+                        <span class="read-time">6 min read</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="images/article-3.jpeg" alt="Guitar Heroes">
+                </div>
+                <div class="article-content">
+                    <span class="article-category">Instruments</span>
+                    <h4>Six Strings and Endless Possibilities: Rock's Guitar Revolution</h4>
+                    <p>How innovative guitarists from Page to Van Halen reimagined what the instrument could do.</p>
+                    <div class="article-meta">
+                        <span class="publish-date">Coming Soon</span>
+                        <span class="read-time">8 min read</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="images/article-4.jpeg" alt="Fashion Evolution">
+                </div>
+                <div class="article-content">
+                    <span class="article-category">Style</span>
+                    <h4>From Denim to Spandex: The Evolution of Rock Fashion</h4>
+                    <p>Tracking the transformation of rock style from hippie roots through glam excess to grunge rebellion.</p>
+                    <div class="article-meta">
+                        <span class="publish-date">Coming Soon</span>
+                        <span class="read-time">6 min read</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-cta">
+            <h3>Have an article idea?</h3>
+            <p>We're always looking for contributors passionate about rock history. Share your expertise with our community.</p>
+            <a href="#contact" class="cta-button">Pitch an Article</a>
+        </div>
+    </div>
+</section>
+    <!-- Rock Vocabulary Section -->
+<section id="vocabulary" class="vocabulary-section">
+    <div class="section-heading">
+        <h2>Rock Lexicon</h2>
+        <p>Master the language of rock to deepen your appreciation of the music and culture</p>
+    </div>
+    
+    <div class="vocabulary-container">
+        <div class="vocabulary-intro">
+            <h3>Speaking the Language of Rock</h3>
+            <p>Ever been confused by terms like "whammy bar," "power trio," or "stadium anthem"? Our Rock Lexicon helps newcomers understand the terminology that defines rock's golden era. Consider this your essential guide to speaking like a true rock aficionado.</p>
+        </div>
+        
+        <div class="vocabulary-search">
+            <input type="text" id="vocabSearch" placeholder="Search the Rock Lexicon..." class="vocab-search-input">
+            <div class="category-filters">
+                <button class="vocab-filter active" data-category="all">All Terms</button>
+                <button class="vocab-filter" data-category="instruments">Instruments</button>
+                <button class="vocab-filter" data-category="techniques">Techniques</button>
+                <button class="vocab-filter" data-category="genres">Genres</button>
+                <button class="vocab-filter" data-category="culture">Culture</button>
+            </div>
+        </div>
+        
+        <div class="vocabulary-grid">
+            <!-- Instruments -->
+            <div class="vocab-card" data-category="instruments">
+                <h4>Whammy Bar</h4>
+                <p>Also called a tremolo arm or vibrato bar. A device attached to the bridge of an electric guitar that allows the player to quickly vary the tension and pitch of the strings, creating a vibrato or diving effect.</p>
+                <span class="vocab-category">Instruments</span>
+                <div class="vocab-example">
+                    "Eddie Van Halen's dive bombs with the whammy bar revolutionized guitar playing in the late 70s."
+                </div>
+            </div>
+            
+            <div class="vocab-card" data-category="instruments">
+                <h4>Double-Neck Guitar</h4>
+                <p>A specialized electric guitar with two necks, typically a 6-string and a 12-string, allowing guitarists to switch between different sounds without changing instruments.</p>
+                <span class="vocab-category">Instruments</span>
+                <div class="vocab-example">
+                    "Jimmy Page's double-neck Gibson EDS-1275 became iconic during live performances of 'Stairway to Heaven'."
+                </div>
+            </div>
+            
+            <div class="vocab-card" data-category="instruments">
+                <h4>Marshall Stack</h4>
+                <p>A full amplification setup consisting of a Marshall amplifier head atop one or more speaker cabinets, known for their distinctive powerful sound and visual impact on stage.</p>
+                <span class="vocab-category">Instruments</span>
+                <div class="vocab-example">
+                    "The wall of Marshall stacks behind AC/DC created both an impressive visual and earth-shaking volume."
+                </div>
+            </div>
+            
+            <!-- Techniques -->
+            <div class="vocab-card" data-category="techniques">
+                <h4>Power Chord</h4>
+                <p>A simplified two-note chord consisting of the root note and its fifth, often played with distortion. The foundation of most rock rhythm guitar playing.</p>
+                <span class="vocab-category">Techniques</span>
+                <div class="vocab-example">
+                    "Black Sabbath's 'Iron Man' opens with one of rock's most recognizable power chord progressions."
+                </div>
+            </div>
+            
+            <div class="vocab-card" data-category="techniques">
+                <h4>Shredding</h4>
+                <p>Playing guitar with high-speed, technically demanding passages, often featuring sweep picking, tapping, and legato techniques.</p>
+                <span class="vocab-category">Techniques</span>
+                <div class="vocab-example">
+                    "Eddie Van Halen's shredding technique on 'Eruption' inspired a generation of guitarists."
+                </div>
+            </div>
+            
+            <div class="vocab-card" data-category="techniques">
+                <h4>Headbanging</h4>
+                <p>A physical response to music where listeners vigorously move their head in rhythm with the beat, particularly associated with heavier rock and metal genres.</p>
+                <span class="vocab-category">Techniques</span>
+                <div class="vocab-example">
+                    "The synchronized headbanging of Metallica fans created a sea of movement during their arena shows."
+                </div>
+            </div>
+            
+            <!-- Genres -->
+            <div class="vocab-card" data-category="genres">
+                <h4>Glam Metal</h4>
+                <p>Also known as hair metal, a subgenre that combined hard rock with pop hooks and an androgynous, theatrical visual style including elaborate hairstyles, makeup, and flashy costumes.</p>
+                <span class="vocab-category">Genres</span>
+                <div class="vocab-example">
+                    "Poison and Mötley Crüe exemplified the glam metal aesthetic that dominated MTV in the mid-1980s."
+                </div>
+            </div>
+            
+            <div class="vocab-card" data-category="genres">
+                <h4>Progressive Rock</h4>
+                <p>A complex subgenre characterized by unusual time signatures, extended compositions, technical instrumental proficiency, and often conceptual or fantasy themes.</p>
+                <span class="vocab-category">Genres</span>
+                <div class="vocab-example">
+                    "Yes and King Crimson pioneered progressive rock's intricate arrangements and virtuosic performances."
+                </div>
+            </div>
+            
+            <div class="vocab-card" data-category="genres">
+                <h4>Arena Rock</h4>
+                <p>A style characterized by anthemic choruses, polished production, and songs designed to work in large stadium settings, often featuring audience participation elements.</p>
+                <span class="vocab-category">Genres</span>
+                <div class="vocab-example">
+                    "Journey's 'Don't Stop Believin'' remains the quintessential arena rock anthem decades after its release."
+                </div>
+            </div>
+            
+            <!-- Culture -->
+            <div class="vocab-card" data-category="culture">
+                <h4>Groupie</h4>
+                <p>A fan who follows a band on tour and often seeks personal relationships with band members. Though sometimes used pejoratively, many were significant cultural figures in their own right.</p>
+                <span class="vocab-category">Culture</span>
+                <div class="vocab-example">
+                    "Famous groupies like Pamela Des Barres became cultural icons who documented rock's backstage history."
+                </div>
+            </div>
+            
+            <div class="vocab-card" data-category="culture">
+                <h4>Backstage Pass</h4>
+                <p>A credential allowing access to restricted areas at concerts, particularly the area behind the stage where artists prepare and relax before and after performances.</p>
+                <span class="vocab-category">Culture</span>
+                <div class="vocab-example">
+                    "Backstage passes became coveted collectibles, often featuring unique artwork for each tour."
+                </div>
+            </div>
+            
+            <div class="vocab-card" data-category="culture">
+                <h4>Record Store Day</h4>
+                <p>An annual event inaugurated in 2008 to celebrate independent record stores, featuring special vinyl releases and performances that has helped revive interest in physical music formats.</p>
+                <span class="vocab-category">Culture</span>
+                <div class="vocab-example">
+                    "Many classic rock albums are reissued with bonus material for Record Store Day, connecting new fans to the vinyl era."
+                </div>
+            </div>
+        </div>
+        
+        <div class="vocabulary-cta">
+            <h3>Missing a term?</h3>
+            <p>Our Rock Lexicon is constantly expanding. If you know a term that should be included, let us know!</p>
+            <a href="#contact" class="cta-button">Suggest a Term</a>
+        </div>
+    </div>
+</section>
+    
     <footer>
         <div class="footer-content">
             <div class="footer-logo">AEMON</div>
@@ -1362,5 +2263,140 @@
             emailjs.init("x2YlPTZg2S8uOFZe2");
         })();
     </script>
+    // Timeline Era Filtering
+document.addEventListener('DOMContentLoaded', function() {
+    // Timeline filtering
+    const eraButtons = document.querySelectorAll('.era-button');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    if (eraButtons.length && timelineItems.length) {
+        eraButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const era = this.getAttribute('data-era');
+                
+                // Update active button
+                eraButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide timeline items
+                timelineItems.forEach(item => {
+                    if (era === 'all' || item.getAttribute('data-era') === era) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+    
+    // Vocabulary filtering
+    const vocabFilters = document.querySelectorAll('.vocab-filter');
+    const vocabCards = document.querySelectorAll('.vocab-card');
+    const vocabSearch = document.getElementById('vocabSearch');
+    
+    if (vocabFilters.length && vocabCards.length) {
+        // Category filtering
+        vocabFilters.forEach(filter => {
+            filter.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active filter
+                vocabFilters.forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide vocab cards
+                vocabCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Also apply search filter if there's text in the search box
+                if (vocabSearch && vocabSearch.value.trim() !== '') {
+                    applySearch(vocabSearch.value.trim().toLowerCase());
+                }
+            });
+        });
+        
+        // Search functionality
+        if (vocabSearch) {
+            vocabSearch.addEventListener('input', function() {
+                const searchText = this.value.trim().toLowerCase();
+                applySearch(searchText);
+            });
+            
+            function applySearch(searchText) {
+                // Get current active category
+                const activeCategory = document.querySelector('.vocab-filter.active').getAttribute('data-category');
+                
+                vocabCards.forEach(card => {
+                    const cardTitle = card.querySelector('h4').textContent.toLowerCase();
+                    const cardContent = card.querySelector('p').textContent.toLowerCase();
+                    const cardCategory = card.getAttribute('data-category');
+                    
+                    // Check if card matches both search text and active category
+                    const matchesSearch = cardTitle.includes(searchText) || cardContent.includes(searchText);
+                    const matchesCategory = activeCategory === 'all' || activeCategory === cardCategory;
+                    
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        }
+    }
+    
+    // Add navigation links
+    const navList = document.getElementById('mainNav');
+    if (navList) {
+        // Get reference to existing items
+        const joinLink = navList.querySelector('a[href="#join"]').parentElement;
+        
+        // Create new items
+        const timelineLink = document.createElement('li');
+        timelineLink.innerHTML = '<a href="#encyclopedia">Timeline</a>';
+        
+        const blogLink = document.createElement('li');
+        blogLink.innerHTML = '<a href="#blog">Articles</a>';
+        
+        const vocabLink = document.createElement('li');
+        vocabLink.innerHTML = '<a href="#vocabulary">Rock Lexicon</a>';
+        
+        // Insert before Join Us
+        navList.insertBefore(vocabLink, joinLink);
+        navList.insertBefore(blogLink, vocabLink);
+        navList.insertBefore(timelineLink, blogLink);
+    }
+    
+    // Add to footer links
+    const footerLinks = document.querySelector('.footer-links');
+    if (footerLinks) {
+        // Get reference to existing items
+        const joinLink = footerLinks.querySelector('a[href="#join"]');
+        
+        // Create new items
+        const timelineLink = document.createElement('a');
+        timelineLink.href = '#encyclopedia';
+        timelineLink.textContent = 'Timeline';
+        
+        const blogLink = document.createElement('a');
+        blogLink.href = '#blog';
+        blogLink.textContent = 'Articles';
+        
+        const vocabLink = document.createElement('a');
+        vocabLink.href = '#vocabulary';
+        vocabLink.textContent = 'Rock Lexicon';
+        
+        // Insert before Join Us
+        footerLinks.insertBefore(vocabLink, joinLink);
+        footerLinks.insertBefore(blogLink, vocabLink);
+        footerLinks.insertBefore(timelineLink, blogLink);
+    }
+});
 </body>
 </html>
