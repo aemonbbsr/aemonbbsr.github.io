@@ -2470,143 +2470,166 @@
 <script type="text/javascript">
     (function() {
         // Public Key - replace with your actual EmailJS public key
-        emailjs.init("your_emailjs_public_key");
+        emailjs.init("x2YlPTZg2S8uOFZe2");
     })();
 </script>
+<script>
     // Timeline Era Filtering
-document.addEventListener('DOMContentLoaded', function() {
-    // Timeline filtering
-    const eraButtons = document.querySelectorAll('.era-button');
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    
-    if (eraButtons.length && timelineItems.length) {
-        eraButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const era = this.getAttribute('data-era');
-                
-                // Update active button
-                eraButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Show/hide timeline items
-                timelineItems.forEach(item => {
-                    if (era === 'all' || item.getAttribute('data-era') === era) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-    }
-    
-    // Vocabulary filtering
-    const vocabFilters = document.querySelectorAll('.vocab-filter');
-    const vocabCards = document.querySelectorAll('.vocab-card');
-    const vocabSearch = document.getElementById('vocabSearch');
-    
-    if (vocabFilters.length && vocabCards.length) {
-        // Category filtering
-        vocabFilters.forEach(filter => {
-            filter.addEventListener('click', function() {
-                const category = this.getAttribute('data-category');
-                
-                // Update active filter
-                vocabFilters.forEach(f => f.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Show/hide vocab cards
-                vocabCards.forEach(card => {
-                    if (category === 'all' || card.getAttribute('data-category') === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                // Also apply search filter if there's text in the search box
-                if (vocabSearch && vocabSearch.value.trim() !== '') {
-                    applySearch(vocabSearch.value.trim().toLowerCase());
-                }
-            });
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Timeline filtering
+        const eraButtons = document.querySelectorAll('.era-button');
+        const timelineItems = document.querySelectorAll('.timeline-item');
         
-        // Search functionality
-        if (vocabSearch) {
-            vocabSearch.addEventListener('input', function() {
-                const searchText = this.value.trim().toLowerCase();
-                applySearch(searchText);
+        if (eraButtons.length && timelineItems.length) {
+            console.log("Timeline buttons found:", eraButtons.length);
+            console.log("Timeline items found:", timelineItems.length);
+            
+            eraButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Prevent default behavior
+                    e.preventDefault();
+                    
+                    const era = this.getAttribute('data-era');
+                    console.log("Era button clicked:", era);
+                    
+                    // Update active button
+                    eraButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show/hide timeline items
+                    timelineItems.forEach(item => {
+                        if (era === 'all' || item.getAttribute('data-era') === era) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        } else {
+            console.log("Timeline elements not found");
+        }
+        
+        // Vocabulary filtering
+        const vocabFilters = document.querySelectorAll('.vocab-filter');
+        const vocabCards = document.querySelectorAll('.vocab-card');
+        const vocabSearch = document.getElementById('vocabSearch');
+        
+        if (vocabFilters.length && vocabCards.length) {
+            // Category filtering
+            vocabFilters.forEach(filter => {
+                filter.addEventListener('click', function(e) {
+                    // Prevent default behavior
+                    e.preventDefault();
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active filter
+                    vocabFilters.forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show/hide vocab cards
+                    vocabCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    // Also apply search filter if there's text in the search box
+                    if (vocabSearch && vocabSearch.value.trim() !== '') {
+                        applySearch(vocabSearch.value.trim().toLowerCase());
+                    }
+                });
             });
             
-            function applySearch(searchText) {
-                // Get current active category
-                const activeCategory = document.querySelector('.vocab-filter.active').getAttribute('data-category');
-                
-                vocabCards.forEach(card => {
-                    const cardTitle = card.querySelector('h4').textContent.toLowerCase();
-                    const cardContent = card.querySelector('p').textContent.toLowerCase();
-                    const cardCategory = card.getAttribute('data-category');
-                    
-                    // Check if card matches both search text and active category
-                    const matchesSearch = cardTitle.includes(searchText) || cardContent.includes(searchText);
-                    const matchesCategory = activeCategory === 'all' || activeCategory === cardCategory;
-                    
-                    if (matchesSearch && matchesCategory) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+            // Search functionality
+            if (vocabSearch) {
+                vocabSearch.addEventListener('input', function() {
+                    const searchText = this.value.trim().toLowerCase();
+                    applySearch(searchText);
                 });
+                
+                function applySearch(searchText) {
+                    // Get current active category
+                    const activeCategory = document.querySelector('.vocab-filter.active').getAttribute('data-category');
+                    
+                    vocabCards.forEach(card => {
+                        const cardTitle = card.querySelector('h4').textContent.toLowerCase();
+                        const cardContent = card.querySelector('p').textContent.toLowerCase();
+                        const cardCategory = card.getAttribute('data-category');
+                        
+                        // Check if card matches both search text and active category
+                        const matchesSearch = cardTitle.includes(searchText) || cardContent.includes(searchText);
+                        const matchesCategory = activeCategory === 'all' || activeCategory === cardCategory;
+                        
+                        if (matchesSearch && matchesCategory) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
             }
         }
-    }
-    
-    // Add navigation links
-    const navList = document.getElementById('mainNav');
-    if (navList) {
-        // Get reference to existing items
-        const joinLink = navList.querySelector('a[href="#join"]').parentElement;
         
-        // Create new items
-        const timelineLink = document.createElement('li');
-        timelineLink.innerHTML = '<a href="#encyclopedia">Timeline</a>';
+        // Add navigation links
+        const navList = document.getElementById('mainNav');
+        if (navList) {
+            // Check if already added
+            if (!navList.querySelector('a[href="#encyclopedia"]')) {
+                // Get reference to existing items
+                const joinLink = navList.querySelector('a[href="#join"]').parentElement;
+                
+                // Create new items
+                const timelineLink = document.createElement('li');
+                timelineLink.innerHTML = '<a href="#encyclopedia">Timeline</a>';
+                
+                const blogLink = document.createElement('li');
+                blogLink.innerHTML = '<a href="#blog">Articles</a>';
+                
+                const vocabLink = document.createElement('li');
+                vocabLink.innerHTML = '<a href="#vocabulary">Rock Lexicon</a>';
+                
+                // Insert before Join Us
+                navList.insertBefore(vocabLink, joinLink);
+                navList.insertBefore(blogLink, vocabLink);
+                navList.insertBefore(timelineLink, blogLink);
+            }
+        }
         
-        const blogLink = document.createElement('li');
-        blogLink.innerHTML = '<a href="#blog">Articles</a>';
+        // Add to footer links
+        const footerLinks = document.querySelector('.footer-links');
+        if (footerLinks) {
+            // Check if already added
+            if (!footerLinks.querySelector('a[href="#encyclopedia"]')) {
+                // Get reference to existing items
+                const joinLink = footerLinks.querySelector('a[href="#join"]');
+                
+                // Create new items
+                const timelineLink = document.createElement('a');
+                timelineLink.href = '#encyclopedia';
+                timelineLink.textContent = 'Timeline';
+                
+                const blogLink = document.createElement('a');
+                blogLink.href = '#blog';
+                blogLink.textContent = 'Articles';
+                
+                const vocabLink = document.createElement('a');
+                vocabLink.href = '#vocabulary';
+                vocabLink.textContent = 'Rock Lexicon';
+                
+                // Insert before Join Us
+                footerLinks.insertBefore(vocabLink, joinLink);
+                footerLinks.insertBefore(blogLink, vocabLink);
+                footerLinks.insertBefore(timelineLink, blogLink);
+            }
+        }
         
-        const vocabLink = document.createElement('li');
-        vocabLink.innerHTML = '<a href="#vocabulary">Rock Lexicon</a>';
-        
-        // Insert before Join Us
-        navList.insertBefore(vocabLink, joinLink);
-        navList.insertBefore(blogLink, vocabLink);
-        navList.insertBefore(timelineLink, blogLink);
-    }
-    
-    // Add to footer links
-    const footerLinks = document.querySelector('.footer-links');
-    if (footerLinks) {
-        // Get reference to existing items
-        const joinLink = footerLinks.querySelector('a[href="#join"]');
-        
-        // Create new items
-        const timelineLink = document.createElement('a');
-        timelineLink.href = '#encyclopedia';
-        timelineLink.textContent = 'Timeline';
-        
-        const blogLink = document.createElement('a');
-        blogLink.href = '#blog';
-        blogLink.textContent = 'Articles';
-        
-        const vocabLink = document.createElement('a');
-        vocabLink.href = '#vocabulary';
-        vocabLink.textContent = 'Rock Lexicon';
-        
-        // Insert before Join Us
-        footerLinks.insertBefore(vocabLink, joinLink);
-        footerLinks.insertBefore(blogLink, vocabLink);
-        footerLinks.insertBefore(timelineLink, blogLink);
-    }
-});
-</body>
+        // Log that everything loaded
+        console.log("All interactive elements initialized");
+    });
+</script>
+</body>    
 </html>
