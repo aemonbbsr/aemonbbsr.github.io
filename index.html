@@ -2469,9 +2469,21 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script type="text/javascript">
     (function() {
-        // Public Key - replace with your actual EmailJS public key
+        // Initialize with your public key
         emailjs.init("x2YlPTZg2S8uOFZe2");
     })();
+
+    // When sending an email
+    emailjs.send('service_3vim6nt', 'template_fx6up8h', {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+    })
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.log('FAILED...', error);
+    });
 </script>
 <script>
     // Timeline Era Filtering
