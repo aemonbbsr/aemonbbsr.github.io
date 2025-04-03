@@ -2467,23 +2467,37 @@
 
 <!-- EmailJS for form handling -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script type="text/javascript">
-    (function() {
-        // Initialize with your public key
-        emailjs.init("x2YlPTZg2S8uOFZe2");
-    })();
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS with your public key
+    emailjs.init("x2YlPTZg2S8uOFZe2"); // Replace with your actual public key
 
-    // When sending an email
-    emailjs.send('service_3vim6nt', 'template_fx6up8h', {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message
-    })
-    .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-        console.log('FAILED...', error);
+    const contactForm = document.getElementById('contact-form');
+    
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Collect form data
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            instagram: document.getElementById('instagram').value,
+            inspiration: document.getElementById('inspiration').value,
+            message: document.getElementById('message').value
+        };
+
+        // Send email using EmailJS
+        emailjs.send('service_3vim6nt', 'template_uar34s3', formData)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                alert('Your message has been sent successfully!');
+                contactForm.reset(); // Clear the form
+            }, function(error) {
+                console.log('FAILED...', error);
+                alert('Failed to send the message. Please try again.');
+            });
     });
+});
 </script>
 <script>
     // Timeline Era Filtering
