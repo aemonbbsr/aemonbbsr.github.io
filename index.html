@@ -1505,7 +1505,7 @@ nav ul li {
     z-index: 100;
     border-radius: 5px;
     padding: 0.5rem 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .dropdown-menu li {
@@ -1538,41 +1538,62 @@ nav ul li {
     transition: transform 0.3s ease;
 }
 
-/* Show dropdown on hover */
-nav ul li:hover .dropdown-menu {
-    display: block;
+/* Desktop: Show dropdown on hover */
+@media (min-width: 769px) {
+    nav ul li:hover .dropdown-menu {
+        display: block;
+    }
 }
 
 /* Mobile dropdown adjustments */
 @media (max-width: 768px) {
     .dropdown-menu {
         position: static;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.3); /* Darker background for better contrast */
         box-shadow: none;
         width: 100%;
+        border-radius: 0;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
         padding: 0;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+    
+    .dropdown-menu li {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .dropdown-menu li:first-child {
+        border-top: none;
     }
     
     .dropdown-menu li a {
-        padding: 0.8rem 0;
+        padding: 1rem 0;
         text-align: center;
         font-size: 1.2rem;
     }
     
-    /* Toggle functionality for mobile */
-    .dropdown-menu {
-        display: none;
-    }
-    
-    .dropdown-active .dropdown-menu {
-        display: block;
+    /* Active dropdown */
+    .has-dropdown.dropdown-active .dropdown-menu {
+        max-height: 1000px; /* Large enough to fit all content */
+        opacity: 1;
+        padding: 0.5rem 0;
     }
     
     /* Rotate the dropdown indicator when active */
     .has-dropdown.dropdown-active > a::after {
         transform: rotate(180deg);
+    }
+    
+    /* Make dropdown parents visually distinct */
+    .has-dropdown > a {
+        background-color: rgba(230, 25, 25, 0.1);
+    }
+    
+    .has-dropdown.dropdown-active > a {
+        background-color: rgba(230, 25, 25, 0.2);
     }
 }
     </style>
@@ -2372,129 +2393,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-// Add this code to your existing JavaScript, inside the DOMContentLoaded event listener
 
-// ===== DROPDOWN MENU FUNCTIONALITY =====
-const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
-
-// For mobile - toggle dropdown on click
-if (window.innerWidth <= 768) {
-    dropdownLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Prevent default only on mobile
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                
-                // Toggle dropdown-active class
-                const parentLi = this.parentElement;
-                parentLi.classList.toggle('dropdown-active');
-                
-                // Close other open dropdowns
-                dropdownLinks.forEach(otherLink => {
-                    if (otherLink !== this) {
-                        otherLink.parentElement.classList.remove('dropdown-active');
-                    }
-                });
-            }
-        });
-    });
-}
-
-// Handle dropdown menu item clicks
-document.querySelectorAll('.dropdown-menu a').forEach(item => {
-    item.addEventListener('click', function(e) {
-        // Get the parent dropdown menu
-        const parentDropdown = this.closest('.has-dropdown');
-        
-        // Close the mobile menu
-        if (mainNav && mobileMenuToggle) {
-            mainNav.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-        }
-        
-        // Close the dropdown by removing the active class
-        if (parentDropdown) {
-            parentDropdown.classList.remove('dropdown-active');
-        }
-        
-        // For timeline era filtering
-        const era = this.getAttribute('data-era');
-        if (era) {
-            e.preventDefault();
-            
-            const targetSection = document.querySelector('#encyclopedia');
-            if (targetSection) {
-                // Scroll to the section
-                setTimeout(() => {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Trigger click on the corresponding era button
-                    setTimeout(() => {
-                        const eraButton = document.querySelector(`.era-button[data-era="${era}"]`);
-                        if (eraButton) {
-                            eraButton.click();
-                        }
-                    }, 500);
-                }, 300);
-            }
-        }
-        
-        // For vocabulary category filtering
-        const category = this.getAttribute('data-category');
-        if (category) {
-            e.preventDefault();
-            
-            const targetSection = document.querySelector('#vocabulary');
-            if (targetSection) {
-                // Scroll to the section
-                setTimeout(() => {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Trigger click on the corresponding category filter
-                    setTimeout(() => {
-                        const categoryFilter = document.querySelector(`.vocab-filter[data-category="${category}"]`);
-                        if (categoryFilter) {
-                            categoryFilter.click();
-                        }
-                    }, 500);
-                }, 300);
-            }
-        }
-        
-        // For scrolling to specific crew member
-        const crew = this.getAttribute('data-crew');
-        if (crew) {
-            e.preventDefault();
-            
-            const targetSection = document.querySelector('#collaborators');
-            if (targetSection) {
-                // Scroll to the collaborators section
-                setTimeout(() => {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Optional: Scroll to the specific crew card
-                    // This requires adding IDs to each crew card
-                }, 300);
-            }
-        }
-    });
-});
-
-// Handle window resize for dropdown menu functionality
-window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-        // Remove active classes on desktop
-        document.querySelectorAll('.has-dropdown').forEach(dropdown => {
-            dropdown.classList.remove('dropdown-active');
-        });
-    }
-});
     // ===== CONTACT FORM FUNCTIONALITY =====
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
@@ -2711,6 +2610,114 @@ window.addEventListener('resize', function() {
             });
         }
     }
+
+    // ===== DROPDOWN MENU FUNCTIONALITY =====
+    const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
+
+    // For mobile - toggle dropdown on click
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Prevent default only on mobile
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                
+                // Toggle dropdown-active class
+                const parentLi = this.parentElement;
+                
+                // Check if this dropdown is already active
+                const isActive = parentLi.classList.contains('dropdown-active');
+                
+                // Close all dropdowns first
+                document.querySelectorAll('.has-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('dropdown-active');
+                });
+                
+                // If this wasn't active before, open it
+                if (!isActive) {
+                    parentLi.classList.add('dropdown-active');
+                }
+            }
+        });
+    });
+
+    // Handle dropdown menu item clicks
+    document.querySelectorAll('.dropdown-menu a').forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Get the target section id from the href
+            const targetId = this.getAttribute('href').split('#')[1];
+            const targetSection = document.getElementById(targetId);
+            
+            // Close the mobile menu and all dropdowns
+            if (mainNav && mobileMenuToggle) {
+                mainNav.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            }
+            
+            // Close all dropdowns
+            document.querySelectorAll('.has-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('dropdown-active');
+            });
+            
+            // Handle era, category, or crew filtering
+            const era = this.getAttribute('data-era');
+            const category = this.getAttribute('data-category');
+            const crew = this.getAttribute('data-crew');
+            
+            if (targetSection) {
+                // Prevent default to handle scroll manually
+                e.preventDefault();
+                
+                // Scroll to the section
+                setTimeout(() => {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Handle filters after scrolling
+                    setTimeout(() => {
+                        if (era) {
+                            const eraButton = document.querySelector(`.era-button[data-era="${era}"]`);
+                            if (eraButton) eraButton.click();
+                        }
+                        
+                        if (category) {
+                            const categoryFilter = document.querySelector(`.vocab-filter[data-category="${category}"]`);
+                            if (categoryFilter) categoryFilter.click();
+                        }
+                        
+                        if (crew) {
+                            // Optional: Scroll to specific crew member
+                            // Add IDs to crew cards for this to work
+                        }
+                    }, 500);
+                }, 300);
+            }
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        // Only on mobile
+        if (window.innerWidth <= 768) {
+            // If click is outside any dropdown
+            if (!e.target.closest('.has-dropdown')) {
+                // Close all dropdowns
+                document.querySelectorAll('.has-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('dropdown-active');
+                });
+            }
+        }
+    });
+
+    // Handle window resize for dropdown menu functionality
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            // Remove active classes on desktop
+            document.querySelectorAll('.has-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('dropdown-active');
+            });
+        }
+    });
 
     // Make sure all sections are properly initialized
     console.log("AEMON website initialized successfully");
