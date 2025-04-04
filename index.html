@@ -1487,6 +1487,94 @@
         margin-left: 30px; /* Adjust margin to keep content aligned */
     }
 }
+/* Add this CSS to your style section for dropdown functionality */
+
+/* Dropdown Menu Styles */
+nav ul li {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(18, 18, 18, 0.95);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    border-radius: 5px;
+    padding: 0.5rem 0;
+    transition: opacity 0.3s ease;
+}
+
+.dropdown-menu li {
+    margin: 0;
+    width: 100%;
+    display: block;
+}
+
+.dropdown-menu li a {
+    color: var(--light-text);
+    padding: 0.8rem 1.5rem;
+    display: block;
+    font-size: 0.9rem;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: rgba(230, 25, 25, 0.2);
+    color: var(--accent-color);
+}
+
+/* Dropdown indicator */
+.has-dropdown > a::after {
+    content: "▼";
+    font-size: 0.7em;
+    margin-left: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+/* Show dropdown on hover */
+nav ul li:hover .dropdown-menu {
+    display: block;
+}
+
+/* Mobile dropdown adjustments */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        background-color: rgba(0, 0, 0, 0.2);
+        box-shadow: none;
+        width: 100%;
+        padding: 0;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .dropdown-menu li a {
+        padding: 0.8rem 0;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+    
+    /* Toggle functionality for mobile */
+    .dropdown-menu {
+        display: none;
+    }
+    
+    .dropdown-active .dropdown-menu {
+        display: block;
+    }
+    
+    /* Rotate the dropdown indicator when active */
+    .has-dropdown.dropdown-active > a::after {
+        transform: rotate(180deg);
+    }
+}
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -1500,17 +1588,50 @@
                 <span></span>
             </button>
             <nav>
-                <ul id="mainNav">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#collaborators">Collaborators</a></li>
-                    <li><a href="#encyclopedia">Timeline</a></li>
-                    <li><a href="#blog">Articles</a></li>
-                    <li><a href="#vocabulary">Rock Lexicon</a></li>
-                    <li><a href="#instagram">Instagram</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#join">Join Us</a></li>
-                </ul>
+                <!-- Replace your existing navigation ul with this updated version -->
+<ul id="mainNav">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li class="has-dropdown">
+        <a href="#collaborators">Collaborators</a>
+        <ul class="dropdown-menu">
+            <li><a href="#collaborators" data-crew="aemon">Aemon</a></li>
+            <li><a href="#collaborators" data-crew="lens-legend">Lens Legend</a></li>
+            <li><a href="#collaborators" data-crew="riff-tailor">Riff Tailor</a></li>
+            <li><a href="#collaborators" data-crew="stage-presence">Stage Presence</a></li>
+        </ul>
+    </li>
+    <li class="has-dropdown">
+        <a href="#encyclopedia">Timeline</a>
+        <ul class="dropdown-menu">
+            <li><a href="#encyclopedia" data-era="60s">60s Roots</a></li>
+            <li><a href="#encyclopedia" data-era="70s">70s Revolution</a></li>
+            <li><a href="#encyclopedia" data-era="80s">80s Explosion</a></li>
+            <li><a href="#encyclopedia" data-era="90s">90s Evolution</a></li>
+        </ul>
+    </li>
+    <li class="has-dropdown">
+        <a href="#blog">Articles</a>
+        <ul class="dropdown-menu">
+            <li><a href="#blog">Music Theory</a></li>
+            <li><a href="#blog">Performance</a></li>
+            <li><a href="#blog">Visual Arts</a></li>
+            <li><a href="#blog">Instruments</a></li>
+        </ul>
+    </li>
+    <li class="has-dropdown">
+        <a href="#vocabulary">Rock Lexicon</a>
+        <ul class="dropdown-menu">
+            <li><a href="#vocabulary" data-category="instruments">Instruments</a></li>
+            <li><a href="#vocabulary" data-category="techniques">Techniques</a></li>
+            <li><a href="#vocabulary" data-category="genres">Genres</a></li>
+            <li><a href="#vocabulary" data-category="culture">Culture</a></li>
+        </ul>
+    </li>
+    <li><a href="#instagram">Instagram</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#join">Join Us</a></li>
+</ul>
             </nav>
         </div>
         <div class="hero-text">
@@ -1595,44 +1716,45 @@
             <p>Seeking kindred spirits with rock'n'roll attitude and bluesy souls to join our visual revolution. We're after collaborators who live and breathe the golden era's ethos—individuals with vintage sensibilities, electric presence, and the kind of authentic edge that can't be manufactured.</p>
         </div>
         <div class="collaborators-container">
-            <div class="collaborator-cards">
-                <div class="collaborator-card">
-                    <div class="collaborator-image">
-                        <img src="images/aemon-profile.jpeg" alt="Aemon">
-                    </div>
-                    <h3>Aemon</h3>
-                    <p>The Rock Cat & Founder</p>
-                    <p class="collaborator-description">Chief curator of amplified history—a walking encyclopedia of riffs, licks, and rock lore. An easygoing broad with zero pretension who'll gladly guide the uninitiated through rock's hallowed halls. Half professor, half party animal.</p>
-                    <a href="mailto:aemonbbsr@gmail.com?subject=Rock%20Collaboration%20Inquiry" class="collab-button">Ready to Rock</a>
-                </div>
-                <div class="collaborator-card">
-                    <div class="collaborator-image">
-                        <img src="images/photographer.jpeg" alt="Photographer">
-                    </div>
-                    <h3>Lens Legend</h3>
-                    <p>Lead Photographer</p>
-                    <p class="collaborator-description">Seeking a visual storyteller who captures raw energy like a young Mick Rock. You understand that photography isn't just about technical perfection—it's about freezing lightning in a bottle. Someone who sees in stratocaster-shaped silhouettes and can translate decibels into visual frequencies.</p>
-                    <a href="mailto:aemonbbsr@gmail.com?subject=Photography%20Collaboration%20Inquiry" class="collab-button">Frame the Moment</a>
-                </div>
-                <div class="collaborator-card">
-                    <div class="collaborator-image">
-                        <img src="images/stylist.jpeg" alt="Stylist">
-                    </div>
-                    <h3>Riff Tailor</h3>
-                    <p>Rock Stylist</p>
-                    <p class="collaborator-description">Looking for someone who knows the difference between Bowie's Berlin era and his Ziggy phase—a fabric alchemist who transforms thrift store finds into stadium-ready statements. Your aesthetic vocabulary includes leather, denim, studs, and that ineffable quality that separates icons from imitators.</p>
-                    <a href="mailto:aemonbbsr@gmail.com?subject=Stylist%20Collaboration%20Inquiry" class="collab-button">Style the Sound</a>
-                </div>
-                <div class="collaborator-card">
-                    <div class="collaborator-image">
-                        <img src="images/model.jpeg" alt="Model">
-                    </div>
-                    <h3>Stage Presence</h3>
-                    <p>Lead Model & Rock Historian</p>
-                    <p class="collaborator-description">Wanted: Chameleons who can embody Page's mystique one day and Joplin's raw emotion the next. You don't just pose—you perform. Your knowledge of rock history isn't academic; it's lived-in, even if you're channeling eras you weren't born in. Natural swagger required, guitar skills appreciated, attitude essential.</p>
-                    <a href="mailto:aemonbbsr@gmail.com?subject=Modeling%20Collaboration%20Inquiry" class="collab-button">Take the Stage</a>
-                </div>
-            </div>
+            <!-- Replace the existing collaborator-card sections with this updated version -->
+<div class="collaborator-cards">
+    <div class="collaborator-card">
+        <div class="collaborator-image">
+            <img src="images/aemon-profile.jpeg" alt="Aemon">
+        </div>
+        <h3>Aemon</h3>
+        <p>The Rock Cat & Founder</p>
+        <p class="collaborator-description">Chief curator of amplified history—a walking encyclopedia of riffs, licks, and rock lore. An easygoing broad with zero pretension who'll gladly guide the uninitiated through rock's hallowed halls. Half professor, half party animal.</p>
+        <a href="#contact" class="collab-button">Ready to Rock</a>
+    </div>
+    <div class="collaborator-card">
+        <div class="collaborator-image">
+            <img src="images/photographer.jpeg" alt="Photographer">
+        </div>
+        <h3>Lens Legend</h3>
+        <p>Lead Photographer</p>
+        <p class="collaborator-description">Seeking a visual storyteller who captures raw energy like a young Mick Rock. You understand that photography isn't just about technical perfection—it's about freezing lightning in a bottle. Someone who sees in stratocaster-shaped silhouettes and can translate decibels into visual frequencies.</p>
+        <a href="#contact" class="collab-button">Frame the Moment</a>
+    </div>
+    <div class="collaborator-card">
+        <div class="collaborator-image">
+            <img src="images/stylist.jpeg" alt="Stylist">
+        </div>
+        <h3>Riff Tailor</h3>
+        <p>Rock Stylist</p>
+        <p class="collaborator-description">Looking for someone who knows the difference between Bowie's Berlin era and his Ziggy phase—a fabric alchemist who transforms thrift store finds into stadium-ready statements. Your aesthetic vocabulary includes leather, denim, studs, and that ineffable quality that separates icons from imitators.</p>
+        <a href="#contact" class="collab-button">Style the Sound</a>
+    </div>
+    <div class="collaborator-card">
+        <div class="collaborator-image">
+            <img src="images/model.jpeg" alt="Model">
+        </div>
+        <h3>Stage Presence</h3>
+        <p>Lead Model & Rock Historian</p>
+        <p class="collaborator-description">Wanted: Chameleons who can embody Page's mystique one day and Joplin's raw emotion the next. You don't just pose—you perform. Your knowledge of rock history isn't academic; it's lived-in, even if you're channeling eras you weren't born in. Natural swagger required, guitar skills appreciated, attitude essential.</p>
+        <a href="#contact" class="collab-button">Take the Stage</a>
+    </div>
+</div>
         </div>
     </section>
 
@@ -2250,7 +2372,129 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+// Add this code to your existing JavaScript, inside the DOMContentLoaded event listener
 
+// ===== DROPDOWN MENU FUNCTIONALITY =====
+const dropdownLinks = document.querySelectorAll('.has-dropdown > a');
+
+// For mobile - toggle dropdown on click
+if (window.innerWidth <= 768) {
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Prevent default only on mobile
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                
+                // Toggle dropdown-active class
+                const parentLi = this.parentElement;
+                parentLi.classList.toggle('dropdown-active');
+                
+                // Close other open dropdowns
+                dropdownLinks.forEach(otherLink => {
+                    if (otherLink !== this) {
+                        otherLink.parentElement.classList.remove('dropdown-active');
+                    }
+                });
+            }
+        });
+    });
+}
+
+// Handle dropdown menu item clicks
+document.querySelectorAll('.dropdown-menu a').forEach(item => {
+    item.addEventListener('click', function(e) {
+        // Get the parent dropdown menu
+        const parentDropdown = this.closest('.has-dropdown');
+        
+        // Close the mobile menu
+        if (mainNav && mobileMenuToggle) {
+            mainNav.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+        }
+        
+        // Close the dropdown by removing the active class
+        if (parentDropdown) {
+            parentDropdown.classList.remove('dropdown-active');
+        }
+        
+        // For timeline era filtering
+        const era = this.getAttribute('data-era');
+        if (era) {
+            e.preventDefault();
+            
+            const targetSection = document.querySelector('#encyclopedia');
+            if (targetSection) {
+                // Scroll to the section
+                setTimeout(() => {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Trigger click on the corresponding era button
+                    setTimeout(() => {
+                        const eraButton = document.querySelector(`.era-button[data-era="${era}"]`);
+                        if (eraButton) {
+                            eraButton.click();
+                        }
+                    }, 500);
+                }, 300);
+            }
+        }
+        
+        // For vocabulary category filtering
+        const category = this.getAttribute('data-category');
+        if (category) {
+            e.preventDefault();
+            
+            const targetSection = document.querySelector('#vocabulary');
+            if (targetSection) {
+                // Scroll to the section
+                setTimeout(() => {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Trigger click on the corresponding category filter
+                    setTimeout(() => {
+                        const categoryFilter = document.querySelector(`.vocab-filter[data-category="${category}"]`);
+                        if (categoryFilter) {
+                            categoryFilter.click();
+                        }
+                    }, 500);
+                }, 300);
+            }
+        }
+        
+        // For scrolling to specific crew member
+        const crew = this.getAttribute('data-crew');
+        if (crew) {
+            e.preventDefault();
+            
+            const targetSection = document.querySelector('#collaborators');
+            if (targetSection) {
+                // Scroll to the collaborators section
+                setTimeout(() => {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Optional: Scroll to the specific crew card
+                    // This requires adding IDs to each crew card
+                }, 300);
+            }
+        }
+    });
+});
+
+// Handle window resize for dropdown menu functionality
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        // Remove active classes on desktop
+        document.querySelectorAll('.has-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('dropdown-active');
+        });
+    }
+});
     // ===== CONTACT FORM FUNCTIONALITY =====
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
