@@ -60,6 +60,7 @@
             letter-spacing: 2px;
             color: var(--light-text);
             text-shadow: 0 0 10px rgba(230, 25, 25, 0.7);
+            z-index: 150; /* Ensure logo stays above mobile menu */
         }
         
         nav ul {
@@ -680,6 +681,7 @@
         .footer-links {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 2rem;
             margin-bottom: 2rem;
         }
@@ -689,6 +691,7 @@
             text-decoration: none;
             font-size: 1rem;
             transition: color 0.3s ease;
+            padding: 0.5rem;
         }
         
         .footer-links a:hover {
@@ -728,7 +731,7 @@
             color: #777777;
         }
         
-        /* Mobile menu toggle */
+        /* Mobile menu toggle - IMPROVED */
         .mobile-menu-toggle {
             display: none;
             flex-direction: column;
@@ -738,7 +741,8 @@
             background: transparent;
             border: none;
             cursor: pointer;
-            z-index: 200;
+            z-index: 200; /* Ensure it's above the menu when expanded */
+            position: relative; /* Required for proper z-index functionality */
         }
         
         .mobile-menu-toggle span {
@@ -769,14 +773,24 @@
                 transition: transform 0.3s ease;
                 z-index: 100;
                 margin-top: 0;
+                padding-top: 4rem; /* Add space for the toggle button */
             }
             
             nav ul.active {
                 transform: translateX(0);
             }
             
+            nav ul li {
+                margin-left: 0;
+                width: 100%;
+                text-align: center;
+            }
+            
             nav ul li a {
                 font-size: 1.5rem;
+                display: block; /* Make entire area clickable */
+                padding: 1rem; /* Increase touch target size */
+                width: 100%;
             }
             
             .mobile-menu-toggle.active span:nth-child(1) {
@@ -796,7 +810,7 @@
             }
         }
         
-        /* Responsive design */
+        /* Responsive design - IMPROVED */
         @media (max-width: 1024px) {
             .about-container {
                 flex-direction: column;
@@ -810,20 +824,15 @@
             .section-heading h2 {
                 font-size: 2.5rem;
             }
+            
+            .contact-container {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 768px) {
             header {
                 min-height: 70vh;
-            }
-            
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                margin-top: 1rem;
             }
             
             h1 {
@@ -850,6 +859,10 @@
             .join-text h2 {
                 font-size: 2.5rem;
             }
+            
+            .instagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 576px) {
@@ -863,16 +876,6 @@
             
             .nav-container {
                 padding: 1rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin-left: 0;
             }
             
             .section-heading h2 {
@@ -902,11 +905,18 @@
             }
             
             .instagram-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
             }
             
             .collaborator-cards {
                 grid-template-columns: 1fr;
+            }
+            
+            .contact-form input,
+            .contact-form textarea,
+            .contact-page-form input,
+            .contact-page-form textarea {
+                font-size: 16px; /* Prevent iOS zoom on focus */
             }
         }
         
@@ -919,10 +929,6 @@
             .section-heading p {
                 font-size: 1rem;
                 padding: 0 10px;
-            }
-            
-            .instagram-grid {
-                grid-template-columns: 1fr;
             }
             
             section {
@@ -962,7 +968,7 @@
     padding: 0.8rem 1.5rem;
     border-radius: 5px;
     font-weight: 600;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: all 0.3s ease;
 }
 
@@ -995,6 +1001,7 @@
     background-color: inherit;
     width: 100%;
     margin-bottom: 3rem;
+    display: block; /* Ensure items are visible by default */
 }
 
 .timeline-dot {
@@ -1016,9 +1023,12 @@
     background-color: var(--accent-color);
     padding: 5px 15px;
     border-radius: 20px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     transform: translateY(-50%);
     top: 10px;
+    min-width: 65px; /* Ensure all digits are visible */
+    text-align: center;
+    z-index: 2; /* Ensure it's above other elements */
 }
 
 .timeline-content {
@@ -1300,7 +1310,7 @@
     padding: 0.6rem 1.2rem;
     border-radius: 5px;
     font-weight: 600;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: all 0.3s ease;
 }
 
@@ -1384,7 +1394,7 @@
     margin-right: auto;
 }
 
-/* JavaScript for Timeline Filtering */
+/* Mobile optimization fixes */
 @media (max-width: 992px) {
     .featured-article {
         flex-direction: column;
@@ -1457,35 +1467,7 @@
     .timeline-content h3 {
         font-size: 1.2rem;
     }
-}
-   .timeline-date {
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-    color: var(--light-text);
-    background-color: var(--accent-color);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.95rem; /* Reduced from 1.1rem */
-    transform: translateY(-50%);
-    top: 10px;
-    min-width: 65px; /* Add minimum width to ensure all digits are visible */
-    text-align: center; /* Center the text */
-    z-index: 2; /* Ensure it's above other elements */
-}
-
-/* Make sure JavaScript for timeline filters actually runs */
-.timeline-item {
-    padding: 10px 40px;
-    position: relative;
-    background-color: inherit;
-    width: 100%;
-    margin-bottom: 3rem;
-    display: block; /* Ensure items are visible by default */
-}
-
-/* Adjust mobile layout to keep years visible */
-@media (max-width: 576px) {
+    
     .timeline::before {
         left: 20px; /* Move line more to left */
     }
@@ -1503,14 +1485,8 @@
     
     .timeline-content {
         margin-left: 30px; /* Adjust margin to keep content aligned */
-        padding: 15px;
     }
 }
-
-/* Make sure buttons actually have pointer cursor */
-.era-button, .vocab-filter {
-    cursor: pointer !important;
-}     
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -1528,6 +1504,9 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#collaborators">Collaborators</a></li>
+                    <li><a href="#encyclopedia">Timeline</a></li>
+                    <li><a href="#blog">Articles</a></li>
+                    <li><a href="#vocabulary">Rock Lexicon</a></li>
                     <li><a href="#instagram">Instagram</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#join">Join Us</a></li>
@@ -1940,7 +1919,8 @@
         <a href="#contact" class="cta-button">Request a Band Profile</a>
     </div>
 </section>
-    <!-- Blog/Articles Section -->
+
+<!-- Blog/Articles Section -->
 <section id="blog" class="blog-section">
     <div class="section-heading">
         <h2>Amplified Insights</h2>
@@ -2033,7 +2013,8 @@
         </div>
     </div>
 </section>
-    <!-- Rock Vocabulary Section -->
+
+<!-- Rock Vocabulary Section -->
 <section id="vocabulary" class="vocabulary-section">
     <div class="section-heading">
         <h2>Rock Lexicon</h2>
@@ -2179,40 +2160,42 @@
     </div>
 </section>
     
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">AEMON</div>
-            <div class="footer-links">
-                <a href="#about">About</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#collaborators">Collaborators</a>
-                <a href="#instagram">Instagram</a>
-                <a href="#contact">Contact</a>
-                <a href="#join">Join Us</a>
-            </div>
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="copyright">© 2025 AEMON: Rock History Unleashed. All Rights Reserved.</p>
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">AEMON</div>
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#collaborators">Collaborators</a>
+            <a href="#encyclopedia">Timeline</a>
+            <a href="#blog">Articles</a>
+            <a href="#vocabulary">Rock Lexicon</a>
+            <a href="#instagram">Instagram</a>
+            <a href="#contact">Contact</a>
+            <a href="#join">Join Us</a>
         </div>
-    </footer>
+        <div class="footer-social">
+            <a href="https://instagram.com/aegonsfx" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p class="copyright">© 2025 AEMON: Rock History Unleashed. All Rights Reserved.</p>
+    </div>
+</footer>
 
-    <script>
-    // Simple smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+<!-- EmailJS for form handling -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-    // Mobile menu toggle
+<!-- Main JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS
+    (function() {
+        emailjs.init("x2YlPTZg2S8uOFZe2");
+    })();
+
+    // ===== MOBILE MENU FUNCTIONALITY =====
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.getElementById('mainNav');
     
@@ -2222,440 +2205,272 @@
             mobileMenuToggle.classList.toggle('active');
         });
         
-        // Close menu when clicking on a link
+        // Fix for mobile menu links - ensure they work properly
         document.querySelectorAll('#mainNav a').forEach(link => {
-            link.addEventListener('click', function() {
-                mainNav.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
+            link.addEventListener('click', function(e) {
+                // Prevent default only for internal links
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    // Close the mobile menu
+                    mainNav.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                    
+                    // Smooth scroll to target section
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Use setTimeout to ensure the mobile menu closing animation completes
+                        setTimeout(() => {
+                            targetSection.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }, 300);
+                    }
+                }
             });
         });
     }
 
-    // Combined event listener for all functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        // EXISTING CODE: Contact form functionality
-        const contactForm = document.getElementById('contactForm');
-        const formStatus = document.getElementById('formStatus');
-        
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
+    // ===== SMOOTH SCROLLING FOR ALL ANCHOR LINKS =====
+    document.querySelectorAll('a[href^="#"]:not(#mainNav a)').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            if (this.getAttribute('href') !== '#') {
                 e.preventDefault();
                 
-                // Get form values
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
                 
-                // Basic validation
-                if (!name || !email || !message) {
-                    showFormStatus('Please fill in all required fields.', 'error');
-                    return;
-                }
-                
-                // Email validation using regex
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    showFormStatus('Please enter a valid email address.', 'error');
-                    return;
-                }
-                
-                // Prepare form data
-                const formData = {
-                    name: name,
-                    email: email,
-                    subject: subject || 'Contact Form Submission',
-                    message: message
-                };
-                
-                // Send the data using EmailJS
-                emailjs.send('service_3vim6nt', 'template_fx6up8h', formData, 'x2YlPTZg2S8uOFZe2')
-                    .then(function(response) {
-                        console.log('SUCCESS!', response.status, response.text);
-                        showFormStatus('Your message has been sent successfully! We\'ll get back to you soon.', 'success');
-                        contactForm.reset();
-                    }, function(error) {
-                        console.log('FAILED...', error);
-                        // Fallback to mailto as a backup method
-                        sendMailtoEmail(formData);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
                     });
-            });
-        }
-        
-        function showFormStatus(message, type) {
-            formStatus.textContent = message;
-            formStatus.className = 'form-status ' + type;
-            
-            // Hide the message after 5 seconds
-            setTimeout(() => {
-                formStatus.style.display = 'none';
-            }, 5000);
-        }
-        
-        function sendMailtoEmail(formData) {
-            // Create a mailto link as fallback
-            const subject = encodeURIComponent(formData.subject);
-            const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
-            const mailtoUrl = `mailto:aemonbbsr@gmail.com?subject=${subject}&body=${body}`;
-            
-            // Inform the user
-            showFormStatus('We\'re having trouble with our form service. Click OK to open your email client instead.', 'error');
-            
-            // Give the user time to read the message
-            setTimeout(() => {
-                if (confirm('Would you like to open your email client to send this message instead?')) {
-                    window.location.href = mailtoUrl;
                 }
-            }, 1000);
-        }
+            }
+        });
+    });
 
-        // NEW CODE: Timeline Era Filtering
-        const eraButtons = document.querySelectorAll('.era-button');
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        
-        if (eraButtons.length && timelineItems.length) {
-            console.log("Timeline buttons found:", eraButtons.length);
-            console.log("Timeline items found:", timelineItems.length);
+    // ===== CONTACT FORM FUNCTIONALITY =====
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            eraButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    // Prevent default behavior
-                    e.preventDefault();
-                    
-                    const era = this.getAttribute('data-era');
-                    console.log("Era button clicked:", era);
-                    
-                    // Update active button
-                    eraButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show/hide timeline items
-                    timelineItems.forEach(item => {
-                        if (era === 'all' || item.getAttribute('data-era') === era) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Basic validation
+            if (!name || !email || !message) {
+                showFormStatus('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            // Email validation using regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showFormStatus('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Prepare form data
+            const formData = {
+                name: name,
+                email: email,
+                subject: subject || 'Contact Form Submission',
+                message: message
+            };
+            
+            // Send the data using EmailJS
+            emailjs.send('service_3vim6nt', 'template_fx6up8h', formData, 'x2YlPTZg2S8uOFZe2')
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    showFormStatus('Your message has been sent successfully! We\'ll get back to you soon.', 'success');
+                    contactForm.reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    // Fallback to mailto as a backup method
+                    sendMailtoEmail(formData);
                 });
-            });
-        } else {
-            console.log("Timeline elements not found");
-        }
+        });
+    }
+    
+    function showFormStatus(message, type) {
+        if (!formStatus) return;
         
-        // NEW CODE: Vocabulary filtering
-        const vocabFilters = document.querySelectorAll('.vocab-filter');
-        const vocabCards = document.querySelectorAll('.vocab-card');
-        const vocabSearch = document.getElementById('vocabSearch');
+        formStatus.textContent = message;
+        formStatus.className = 'form-status ' + type;
+        formStatus.style.display = 'block';
         
-        if (vocabFilters.length && vocabCards.length) {
-            // Category filtering
-            vocabFilters.forEach(filter => {
-                filter.addEventListener('click', function(e) {
-                    // Prevent default behavior
-                    e.preventDefault();
+        // Hide the message after 5 seconds
+        setTimeout(() => {
+            formStatus.style.display = 'none';
+        }, 5000);
+    }
+    
+    function sendMailtoEmail(formData) {
+        // Create a mailto link as fallback
+        const subject = encodeURIComponent(formData.subject);
+        const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+        const mailtoUrl = `mailto:aemonbbsr@gmail.com?subject=${subject}&body=${body}`;
+        
+        // Inform the user
+        showFormStatus('We\'re having trouble with our form service. Click OK to open your email client instead.', 'error');
+        
+        // Give the user time to read the message
+        setTimeout(() => {
+            if (confirm('Would you like to open your email client to send this message instead?')) {
+                window.location.href = mailtoUrl;
+            }
+        }, 1000);
+    }
+
+    // ===== JOIN FORM FUNCTIONALITY =====
+    const joinForm = document.querySelector('.join-section .contact-form');
+    if (joinForm) {
+        joinForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form inputs
+            const nameInput = joinForm.querySelector('input[placeholder="Your Name"]');
+            const emailInput = joinForm.querySelector('input[placeholder="Your Email"]');
+            const instagramInput = joinForm.querySelector('input[placeholder="Instagram Handle"]');
+            const inspirationInput = joinForm.querySelector('input[placeholder="Your Rock Inspiration"]');
+            const messageInput = joinForm.querySelector('textarea');
+            
+            // Basic validation
+            if (!nameInput.value || !emailInput.value) {
+                alert('Please fill in at least your name and email.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Prepare form data
+            const formData = {
+                name: nameInput.value,
+                email: emailInput.value,
+                instagram: instagramInput ? instagramInput.value : '',
+                inspiration: inspirationInput ? inspirationInput.value : '',
+                message: messageInput ? messageInput.value : ''
+            };
+            
+            // Send using EmailJS (or fallback to mailto)
+            emailjs.send('service_3vim6nt', 'template_uar34s3', formData)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Your join request has been sent successfully!');
+                    joinForm.reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    // Fallback to mailto
+                    const subject = encodeURIComponent('Join AEMON Rock Movement');
+                    const body = encodeURIComponent(
+                        `Name: ${formData.name}\n` +
+                        `Email: ${formData.email}\n` +
+                        `Instagram: ${formData.instagram || 'Not provided'}\n` +
+                        `Rock Inspiration: ${formData.inspiration || 'Not provided'}\n\n` +
+                        `Message: ${formData.message || 'No additional message provided'}`
+                    );
                     
-                    const category = this.getAttribute('data-category');
-                    
-                    // Update active filter
-                    vocabFilters.forEach(f => f.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show/hide vocab cards
-                    vocabCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                    
-                    // Also apply search filter if there's text in the search box
-                    if (vocabSearch && vocabSearch.value.trim() !== '') {
-                        applySearch(vocabSearch.value.trim().toLowerCase());
+                    if (confirm('We\'re having trouble with our form. Would you like to open your email client instead?')) {
+                        window.location.href = `mailto:aemonbbsr@gmail.com?subject=${subject}&body=${body}`;
+                    }
+                });
+        });
+    }
+
+    // ===== TIMELINE ERA FILTERING =====
+    const eraButtons = document.querySelectorAll('.era-button');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    if (eraButtons.length && timelineItems.length) {
+        eraButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const era = this.getAttribute('data-era');
+                
+                // Update active button
+                eraButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide timeline items
+                timelineItems.forEach(item => {
+                    if (era === 'all' || item.getAttribute('data-era') === era) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
                     }
                 });
             });
-            
-            // Search functionality
-            if (vocabSearch) {
-                vocabSearch.addEventListener('input', function() {
-                    const searchText = this.value.trim().toLowerCase();
-                    applySearch(searchText);
-                });
-                
-                function applySearch(searchText) {
-                    // Get current active category
-                    const activeCategory = document.querySelector('.vocab-filter.active').getAttribute('data-category');
-                    
-                    vocabCards.forEach(card => {
-                        const cardTitle = card.querySelector('h4').textContent.toLowerCase();
-                        const cardContent = card.querySelector('p').textContent.toLowerCase();
-                        const cardCategory = card.getAttribute('data-category');
-                        
-                        // Check if card matches both search text and active category
-                        const matchesSearch = cardTitle.includes(searchText) || cardContent.includes(searchText);
-                        const matchesCategory = activeCategory === 'all' || activeCategory === cardCategory;
-                        
-                        if (matchesSearch && matchesCategory) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                }
-            }
-        }
-        
-        // NEW CODE: Add navigation links if not already present
-        const navList = document.getElementById('mainNav');
-        if (navList) {
-            // Check if already added
-            if (!navList.querySelector('a[href="#encyclopedia"]')) {
-                // Get reference to existing items
-                const joinLink = navList.querySelector('a[href="#join"]').parentElement;
-                
-                // Create new items
-                const timelineLink = document.createElement('li');
-                timelineLink.innerHTML = '<a href="#encyclopedia">Timeline</a>';
-                
-                const blogLink = document.createElement('li');
-                blogLink.innerHTML = '<a href="#blog">Articles</a>';
-                
-                const vocabLink = document.createElement('li');
-                vocabLink.innerHTML = '<a href="#vocabulary">Rock Lexicon</a>';
-                
-                // Insert before Join Us
-                navList.insertBefore(vocabLink, joinLink);
-                navList.insertBefore(blogLink, vocabLink);
-                navList.insertBefore(timelineLink, blogLink);
-            }
-        }
-        
-        // NEW CODE: Add to footer links if not already present
-        const footerLinks = document.querySelector('.footer-links');
-        if (footerLinks) {
-            // Check if already added
-            if (!footerLinks.querySelector('a[href="#encyclopedia"]')) {
-                // Get reference to existing items
-                const joinLink = footerLinks.querySelector('a[href="#join"]');
-                
-                // Create new items
-                const timelineLink = document.createElement('a');
-                timelineLink.href = '#encyclopedia';
-                timelineLink.textContent = 'Timeline';
-                
-                const blogLink = document.createElement('a');
-                blogLink.href = '#blog';
-                blogLink.textContent = 'Articles';
-                
-                const vocabLink = document.createElement('a');
-                vocabLink.href = '#vocabulary';
-                vocabLink.textContent = 'Rock Lexicon';
-                
-                // Insert before Join Us
-                footerLinks.insertBefore(vocabLink, joinLink);
-                footerLinks.insertBefore(blogLink, vocabLink);
-                footerLinks.insertBefore(timelineLink, blogLink);
-            }
-        }
-        
-        // Log that everything loaded
-        console.log("All interactive elements initialized");
-    });
-</script>
-
-<!-- EmailJS for form handling -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize EmailJS with your public key
-    emailjs.init("x2YlPTZg2S8uOFZe2"); // Replace with your actual public key
-
-    const contactForm = document.getElementById('contact-form');
+        });
+    }
     
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        // Collect form data
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            instagram: document.getElementById('instagram').value,
-            inspiration: document.getElementById('inspiration').value,
-            message: document.getElementById('message').value
-        };
-
-        // Send email using EmailJS
-        emailjs.send('service_3vim6nt', 'template_uar34s3', formData)
-            .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-                alert('Your message has been sent successfully!');
-                contactForm.reset(); // Clear the form
-            }, function(error) {
-                console.log('FAILED...', error);
-                alert('Failed to send the message. Please try again.');
+    // ===== VOCABULARY FILTERING =====
+    const vocabFilters = document.querySelectorAll('.vocab-filter');
+    const vocabCards = document.querySelectorAll('.vocab-card');
+    const vocabSearch = document.getElementById('vocabSearch');
+    
+    if (vocabFilters.length && vocabCards.length) {
+        // Category filtering
+        vocabFilters.forEach(filter => {
+            filter.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const category = this.getAttribute('data-category');
+                
+                // Update active filter
+                vocabFilters.forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Apply filtering
+                const searchText = vocabSearch ? vocabSearch.value.trim().toLowerCase() : '';
+                filterVocabCards(category, searchText);
             });
-    });
+        });
+        
+        // Search functionality
+        if (vocabSearch) {
+            vocabSearch.addEventListener('input', function() {
+                const searchText = this.value.trim().toLowerCase();
+                const activeCategory = document.querySelector('.vocab-filter.active').getAttribute('data-category');
+                filterVocabCards(activeCategory, searchText);
+            });
+        }
+        
+        function filterVocabCards(category, searchText) {
+            vocabCards.forEach(card => {
+                const cardTitle = card.querySelector('h4').textContent.toLowerCase();
+                const cardContent = card.querySelector('p').textContent.toLowerCase();
+                const cardCategory = card.getAttribute('data-category');
+                
+                // Check if card matches both search text and active category
+                const matchesSearch = !searchText || cardTitle.includes(searchText) || cardContent.includes(searchText);
+                const matchesCategory = category === 'all' || category === cardCategory;
+                
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    }
+
+    // Make sure all sections are properly initialized
+    console.log("AEMON website initialized successfully");
 });
 </script>
-<script>
-    // Timeline Era Filtering
-    document.addEventListener('DOMContentLoaded', function() {
-        // Timeline filtering
-        const eraButtons = document.querySelectorAll('.era-button');
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        
-        if (eraButtons.length && timelineItems.length) {
-            console.log("Timeline buttons found:", eraButtons.length);
-            console.log("Timeline items found:", timelineItems.length);
-            
-            eraButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    // Prevent default behavior
-                    e.preventDefault();
-                    
-                    const era = this.getAttribute('data-era');
-                    console.log("Era button clicked:", era);
-                    
-                    // Update active button
-                    eraButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show/hide timeline items
-                    timelineItems.forEach(item => {
-                        if (era === 'all' || item.getAttribute('data-era') === era) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        } else {
-            console.log("Timeline elements not found");
-        }
-        
-        // Vocabulary filtering
-        const vocabFilters = document.querySelectorAll('.vocab-filter');
-        const vocabCards = document.querySelectorAll('.vocab-card');
-        const vocabSearch = document.getElementById('vocabSearch');
-        
-        if (vocabFilters.length && vocabCards.length) {
-            // Category filtering
-            vocabFilters.forEach(filter => {
-                filter.addEventListener('click', function(e) {
-                    // Prevent default behavior
-                    e.preventDefault();
-                    
-                    const category = this.getAttribute('data-category');
-                    
-                    // Update active filter
-                    vocabFilters.forEach(f => f.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show/hide vocab cards
-                    vocabCards.forEach(card => {
-                        if (category === 'all' || card.getAttribute('data-category') === category) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                    
-                    // Also apply search filter if there's text in the search box
-                    if (vocabSearch && vocabSearch.value.trim() !== '') {
-                        applySearch(vocabSearch.value.trim().toLowerCase());
-                    }
-                });
-            });
-            
-            // Search functionality
-            if (vocabSearch) {
-                vocabSearch.addEventListener('input', function() {
-                    const searchText = this.value.trim().toLowerCase();
-                    applySearch(searchText);
-                });
-                
-                function applySearch(searchText) {
-                    // Get current active category
-                    const activeCategory = document.querySelector('.vocab-filter.active').getAttribute('data-category');
-                    
-                    vocabCards.forEach(card => {
-                        const cardTitle = card.querySelector('h4').textContent.toLowerCase();
-                        const cardContent = card.querySelector('p').textContent.toLowerCase();
-                        const cardCategory = card.getAttribute('data-category');
-                        
-                        // Check if card matches both search text and active category
-                        const matchesSearch = cardTitle.includes(searchText) || cardContent.includes(searchText);
-                        const matchesCategory = activeCategory === 'all' || activeCategory === cardCategory;
-                        
-                        if (matchesSearch && matchesCategory) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                }
-            }
-        }
-        
-        // Add navigation links
-        const navList = document.getElementById('mainNav');
-        if (navList) {
-            // Check if already added
-            if (!navList.querySelector('a[href="#encyclopedia"]')) {
-                // Get reference to existing items
-                const joinLink = navList.querySelector('a[href="#join"]').parentElement;
-                
-                // Create new items
-                const timelineLink = document.createElement('li');
-                timelineLink.innerHTML = '<a href="#encyclopedia">Timeline</a>';
-                
-                const blogLink = document.createElement('li');
-                blogLink.innerHTML = '<a href="#blog">Articles</a>';
-                
-                const vocabLink = document.createElement('li');
-                vocabLink.innerHTML = '<a href="#vocabulary">Rock Lexicon</a>';
-                
-                // Insert before Join Us
-                navList.insertBefore(vocabLink, joinLink);
-                navList.insertBefore(blogLink, vocabLink);
-                navList.insertBefore(timelineLink, blogLink);
-            }
-        }
-        
-        // Add to footer links
-        const footerLinks = document.querySelector('.footer-links');
-        if (footerLinks) {
-            // Check if already added
-            if (!footerLinks.querySelector('a[href="#encyclopedia"]')) {
-                // Get reference to existing items
-                const joinLink = footerLinks.querySelector('a[href="#join"]');
-                
-                // Create new items
-                const timelineLink = document.createElement('a');
-                timelineLink.href = '#encyclopedia';
-                timelineLink.textContent = 'Timeline';
-                
-                const blogLink = document.createElement('a');
-                blogLink.href = '#blog';
-                blogLink.textContent = 'Articles';
-                
-                const vocabLink = document.createElement('a');
-                vocabLink.href = '#vocabulary';
-                vocabLink.textContent = 'Rock Lexicon';
-                
-                // Insert before Join Us
-                footerLinks.insertBefore(vocabLink, joinLink);
-                footerLinks.insertBefore(blogLink, vocabLink);
-                footerLinks.insertBefore(timelineLink, blogLink);
-            }
-        }
-        
-        // Log that everything loaded
-        console.log("All interactive elements initialized");
-    });
-</script>
-</body>    
+</body>
 </html>
